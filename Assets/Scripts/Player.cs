@@ -136,6 +136,12 @@ public class Player : MonoBehaviour
             anim.SetTrigger("Win");
         }
 
+        // Handle cast input
+        if(Input.GetKeyDown(KeyCode.F))
+        {
+            anim.SetTrigger("isCasting");
+        }
+
     }
 
     private void UpdateAnimations()
