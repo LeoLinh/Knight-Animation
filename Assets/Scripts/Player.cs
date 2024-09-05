@@ -22,7 +22,6 @@ public class Player : MonoBehaviour
     private bool isBlocking;
     private bool isDashing;
     private bool isStriking;
-    private bool isJumpAttacking; // Biến này để kiểm tra trạng thái JumpAttack
 
     void Start()
     {
@@ -45,12 +44,6 @@ public class Player : MonoBehaviour
         // Check if the player is on the ground
         isGrounded = Physics2D.OverlapCircle(groundCheckPoint.position, groundCheckRadius, WhatIsGround);
 
-        // Reset trạng thái JumpAttack khi nhân vật chạm đất
-        if (isGrounded)
-        {
-            isJumpAttacking = false;
-            anim.ResetTrigger("JumpAttack"); // Đặt lại Trigger khi chạm đất
-        }
     }
 
     private void HandleInput()
@@ -62,7 +55,7 @@ public class Player : MonoBehaviour
         }
 
         // Handle movement input
-        if (!isCrouching && !isBlocking && !isDashing && !isStriking && !isJumpAttacking)
+        if (!isCrouching && !isBlocking && !isDashing && !isStriking)
         {
             rb.velocity = new Vector2(Input.GetAxisRaw("Horizontal") * moveSpeed, rb.velocity.y);
         }
